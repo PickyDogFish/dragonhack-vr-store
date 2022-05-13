@@ -1,0 +1,166 @@
+{
+    "name": "input",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "89947a38-d44b-45d8-978b-185c61b0619b",
+            "actions": [
+                {
+                    "name": "Left Trigger",
+                    "type": "Value",
+                    "id": "606e518d-7a83-4753-a6b7-91aed45b1a78",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left Grip",
+                    "type": "Value",
+                    "id": "3ef4b521-4d21-412c-bfb5-7e535ae82b4d",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left Grip Button",
+                    "type": "Button",
+                    "id": "21a64a63-f3ff-4cab-ac2d-093852482638",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Trigger",
+                    "type": "Value",
+                    "id": "4fe3e974-e025-4135-b173-97451375d6b7",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Grip",
+                    "type": "Value",
+                    "id": "330e067b-8fd3-4fc7-8a5c-4885cfd6a9e8",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Grip Button",
+                    "type": "Button",
+                    "id": "2c6e1e67-0d86-4c9e-ba14-4b8336614b38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left Haptic",
+                    "type": "PassThrough",
+                    "id": "e318e581-1a73-4ec3-bebf-f85ff97a227e",
+                    "expectedControlType": "Haptic",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right Haptic",
+                    "type": "PassThrough",
+                    "id": "884b0d7d-3f95-4781-b915-d448a9c15883",
+                    "expectedControlType": "Haptic",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f5cf61d-bb0a-4bce-9d97-f2e19137fde0",
+                    "path": "<XRController>{LeftHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bee8d2a0-5268-451b-9318-bf0a20ba47eb",
+                    "path": "<XRController>{LeftHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83a14987-2a87-496b-867e-eff7b6f829fc",
+                    "path": "<XRController>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70bfc0b4-67df-4844-959f-8ee34537ba37",
+                    "path": "<XRController>{RightHand}/grip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a817819-4771-4b88-b364-2916e116acad",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Grip Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22f01e6b-885c-486c-b43a-0ecb68b5be9e",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Grip Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b282cdc-4d5e-4f0f-9870-0245d3ff70a9",
+                    "path": "<XRController>{LeftHand}/haptic",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Haptic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54d9b201-d024-4638-a0c6-c76479426b09",
+                    "path": "<XRController>{RightHand}/haptic",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Haptic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
