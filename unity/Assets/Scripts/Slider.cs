@@ -86,7 +86,7 @@ public class Slider : Grabable
             }
         } else {
             if (slideIn){
-                autoSlideIn(0.08f, slideInFromLeft);
+                autoSlideIn(0.05f, slideInFromLeft);
             } else if (slideOut){
                 autoSlideOut(0.08f, slideOutFromLeft);
                 if (slideOutFromLeft){

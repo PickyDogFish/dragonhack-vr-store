@@ -51,6 +51,8 @@ MonoBehaviour:
   previousCloset: {fileID: 0}
   slidiness: 0.96
   slideDirection: {x: 0, y: 0, z: 0}
+  startStopLocation: {x: 0, y: 0, z: 0}
+  endStopLocation: {x: 0, y: 0, z: 0}
 --- !u!65 &7750637546619036079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62,8 +64,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22447443, y: 2.0038455, z: 0.61294913}
-  m_Center: {x: 0.65, y: 1, z: 0.10228634}
+  m_Size: {x: 0.22447443, y: 2.0038452, z: 0.7840797}
+  m_Center: {x: 0.65, y: 1, z: 0.016721085}
 --- !u!65 &8889150080418519618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.21897247, y: 2.0038455, z: 0.61294913}
-  m_Center: {x: -0.65, y: 1, z: 0.10228634}
+  m_Size: {x: 0.21897244, y: 2.0038452, z: 0.78995746}
+  m_Center: {x: -0.65, y: 1, z: 0.013782173}
 --- !u!1001 &7925719738174499830
 PrefabInstance:
   m_ObjectHideFlags: 0
