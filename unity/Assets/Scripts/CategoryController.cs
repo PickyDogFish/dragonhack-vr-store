@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class CategoryController : MonoBehaviour
     private GameObject shirtCloset;
     [SerializeField]
     private GameObject beanieCloset;
-
 
     //closet slide direction
     private Vector3 slideDirection = new Vector3(1,0,0);
@@ -89,6 +89,7 @@ public class CategoryController : MonoBehaviour
         GameObject closet;
         if (cat == "shirt"){
             closet = shirtCloset;
+            itemsPerCloset = 6;
         } else {
             closet = beanieCloset;
         }
@@ -105,6 +106,20 @@ public class CategoryController : MonoBehaviour
             setNextPreviousCloset();
         }
         setClosetsModelCustomizer();
+
+        for (int i = 0; i < closetList.Count; i++)
+        {
+            GameObject tempCloset = closetList[i];
+            if (products.Length >= i* itemsPerCloset + 6){
+                Product[] closetItems = new Product[6];
+                Array.Copy(products, i* itemsPerCloset, closetItems, 0, 6);
+                tempCloset.GetComponent<shirtClosetItemManager>().loadModelData(closetItems);
+            } else {
+                //not enough products to fill up the whole closet
+            }
+        }
+        
+
         closetList[0].GetComponent<Slider>().setSlideIn(true);
     }
 }

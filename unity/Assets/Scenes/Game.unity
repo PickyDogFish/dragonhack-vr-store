@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d637fc57c230d9c438d7e2964f0bd0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelCustomiser: {fileID: 1773724215}
   shirtCloset: {fileID: 2900716395662708883, guid: cffa650312883234a9d575b2e1464832, type: 3}
   beanieCloset: {fileID: 0}
   spawnPos: {x: -5, y: 0, z: 0}
@@ -778,7 +779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1773724215
 MonoBehaviour:
   m_ObjectHideFlags: 0
