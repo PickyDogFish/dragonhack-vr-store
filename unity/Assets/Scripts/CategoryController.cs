@@ -39,11 +39,31 @@ public class CategoryController : MonoBehaviour
         {
             closetList.Add(Instantiate(closet, spawnPos, Quaternion.identity));
         }
+
+        setNextPreviousCloset();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void setNextPreviousCloset(){
+        Slider first = closetList[0].GetComponent<Slider>();
+        Slider last = closetList[closetList.Count-1].GetComponent<Slider>();
+        first.nextCloset = closetList[0].GetComponent<Slider>();
+        first.previousCloset = last;
+        last.previousCloset = closetList[closetList.Count - 2].GetComponent<Slider>();
+        last.nextCloset = first;
+
+
+        for (int i = 1; i < closetList.Count - 1; i++)
+        {
+            GameObject closet = closetList[i];
+            Slider slider = closet.GetComponent<Slider>();
+            slider.nextCloset = closetList[i+1].GetComponent<Slider>();
+            slider.previousCloset = closetList[i-1].GetComponent<Slider>();
+        }
     }
 }
