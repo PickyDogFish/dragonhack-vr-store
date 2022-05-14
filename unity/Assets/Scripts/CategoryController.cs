@@ -46,14 +46,4 @@ public class CategoryController : MonoBehaviour
     {
         
     }
-
-    //slides in the next closet from the left to the right
-    public void slideInNext(){
-        
-    }
-
-    //slides in the previous closet from the right to the left
-    public void slideInPrevious(){
-        
-    }
 }

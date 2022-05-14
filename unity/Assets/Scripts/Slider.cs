@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Slider : Grabable
 {
+    //ref to next and previous closet in the category
+    public GameObject nextCloset;
+    public GameObject previousCloset;
+
+
     //Slidiness, more means more slidy after letting go
     [SerializeField]
     private float slidiness = 0.96f;
@@ -13,11 +18,11 @@ public class Slider : Grabable
     [SerializeField]
     private Vector3 slideDirection;
 
+    //true when sliding in or out
     private bool autoSliding = false;
+    private bool autoSlideDir = true;
     private Vector3 autoSlideTo = Vector3.zero;
     private float autoSlideSpeed;
-
-
 
 
     private GameObject holdingHand = null;
@@ -46,14 +51,20 @@ public class Slider : Grabable
             } else {
                 //Move according to inertia
                 if (lastPosChange.magnitude > 0.039f){
-                    setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f);
+                    if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
+                        setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f);
+                        autoSlideDir = true;
+                    } else {
+                        setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f);
+                        autoSlideDir = false;
+                    }
                 } else {
                     lastPosChange = scaleSlide();
                     gameObject.transform.localPosition += lastPosChange;
                 }
             }
         } else {
-            autoSlideConst(autoSlideSpeed);
+            autoSlideOut(autoSlideSpeed, autoSlideDir);
         }
     }
 
@@ -82,9 +93,10 @@ public class Slider : Grabable
         autoSlideSpeed = speed;
     }
 
-    //Slides in from current position towards given position
+    //Slides in from current position towards autoSlideTo
     //With speed given by lerp value
-    private void autoSlideConst(float speed){
+    //if direction true slide to right, false slide to left
+    private void autoSlideOut(float speed, bool direction){
         Vector3 slideDist = gameObject.transform.localPosition - autoSlideTo;
         if (slideDist.magnitude < 0.001){
             autoSliding = false;
@@ -93,8 +105,14 @@ public class Slider : Grabable
         }
     }
 
-    private void autoSlideDecelerateTo(float speed){
-        Vector3 dist = autoSlideTo - gameObject.transform.localPosition;
-        gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+    //if direction true slide to right, false slide to left
+    private void autoSlideIn(float speed, bool direction){
+        if (direction){
+            Vector3 dist = autoSlideTo - gameObject.transform.localPosition;
+            gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+        } else {
+            Vector3 dist = gameObject.transform.localPosition - autoSlideTo;
+            gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+        }
     }
 }
