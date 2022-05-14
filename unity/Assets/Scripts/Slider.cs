@@ -15,18 +15,10 @@ public class Slider : Grabable
     
     // A vector that defines the direction
     // in which the object can slide
-    [SerializeField]
-    private Vector3 slideDirection;
+    public Vector3 slideDirection;
 
-    //true when sliding in or out
-    private bool autoSliding = false;
     //true is to the right, false is to the left
     private bool autoSlideDir = true;
-    private Vector3 autoSlideTo = Vector3.zero;
-    private float autoSlideSpeed;
-    // Location right in front of the player
-    private Vector3 stopLocation = Vector3.zero;
-    private bool outDir;
 
 
     private GameObject holdingHand = null;
@@ -36,43 +28,72 @@ public class Slider : Grabable
     private Vector3 handLastFrameMove = Vector3.zero;
     private Vector3 lastPosChange = Vector3.zero;
 
+
+    //sliding the closet in vars
+    private bool slideIn = false;
+    private bool slideInFromLeft = true;
+
+    //sliding the closet out vars
+    private bool slideOut = false;
+    private bool slideOutFromLeft = true;
+
+    //stop locations
+    private Vector3 midStopLocation = Vector3.zero;
+    public Vector3 startStopLocation;
+    public Vector3 endStopLocation;
+    
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         slideDirection = slideDirection.normalized;
+        startStopLocation = slideDirection * -5;
+        endStopLocation = slideDirection * 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!autoSliding){
+        if (!slideIn && !slideOut){
             if (holdingHand != null){
+
                 Vector3 handMove = holdingHand.transform.position - handGrabPos;
                 Vector3 projected = Vector3.Project(handMove, slideDirection);
                 gameObject.transform.localPosition = sliderGrabLocalPos + projected;
                 lastPosChange = Vector3.Project(handMove - handLastFrameMove, slideDirection);
                 handLastFrameMove = handMove;
             } else {
-                //Move according to inertia
+                //if true we are switching the closet
                 if (lastPosChange.magnitude > 0.039f){
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
-                        setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
+                        setSlideOut(true);
+                        // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                         autoSlideDir = true;
                     } else {
-                        setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
+                        setSlideOut(false);
+                        // setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                         autoSlideDir = false;
                     }
+                    lastPosChange = Vector3.zero;
+                //not switching, letting it slide
                 } else {
                     lastPosChange = scaleSlide();
                     gameObject.transform.localPosition += lastPosChange;
                 }
             }
         } else {
-            autoSlideOut(autoSlideSpeed, autoSlideDir);
-            if (autoSlideDir){
-                nextCloset.setAutoSlidePos(Vector3.zero, 0.9f, true);
-            } else {
-                nextCloset.setAutoSlidePos(Vector3.zero, 0.9f, false);
+            if (slideIn){
+                autoSlideIn(0.08f, slideInFromLeft);
+            } else if (slideOut){
+                autoSlideOut(0.08f, slideOutFromLeft);
+                if (slideOutFromLeft){
+                    nextCloset.setSlideIn(true);
+                } else {
+                    previousCloset.setSlideIn(false);
+                }
             }
         }
     }
@@ -95,38 +116,58 @@ public class Slider : Grabable
         return Vector3.Lerp(Vector3.zero, lastPosChange, slidiness);
     }
 
-    public void setAutoSlidePos(Vector3 pos, float speed, bool direction){
-        Debug.Log("autosliding set");
-        autoSlideTo = pos;
-        autoSliding = true;
-        autoSlideSpeed = speed;
-        outDir = direction;
+    public void setSlideOut(bool fromLeft){
+        slideOut = true;
+        slideInFromLeft = fromLeft;
+    }
+
+    public void setSlideIn(bool fromLeft){
+        slideIn = true;
+        slideInFromLeft = fromLeft;
+        if (fromLeft){
+            gameObject.transform.localPosition = endStopLocation;
+        } else {
+            gameObject.transform.localPosition = startStopLocation;
+        }
     }
 
     //Slides in from current position towards autoSlideTo
     //With speed given by lerp value
     //if direction true slide to right, false slide to left
     private void autoSlideOut(float speed, bool direction){
-        Vector3 slideDist = gameObject.transform.localPosition - autoSlideTo;
-        if (slideDist.magnitude < 0.001){
-            autoSliding = false;
+        Vector3 goal;
+        if (direction){
+            goal = endStopLocation;
+        } else {
+            goal = startStopLocation;
+        }
+
+        Vector3 slideDist = gameObject.transform.localPosition - goal;
+        if (gameObject.transform.localPosition.magnitude > goal.magnitude){
+            Debug.Log("setting slide out to off");
+            slideOut = false;
         } else {
             if (direction){
-                gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
-            } else {
                 gameObject.transform.localPosition -= Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
+            } else {
+                gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
             }
         }
     }
 
-    //if direction true slide to right, false slide to left
+    //if direction true slide left to right, false slide right to left
     private void autoSlideIn(float speed, bool direction){
-        if (direction){
-            Vector3 dist = stopLocation - gameObject.transform.localPosition;
-            gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+        Vector3 dist = midStopLocation - gameObject.transform.localPosition;
+        if (dist.magnitude < 0.01){
+            Debug.Log("setting slide in to off");
+            slideIn = false;
         } else {
-            Vector3 dist = gameObject.transform.localPosition - autoSlideTo;
-            gameObject.transform.localPosition -= Vector3.Lerp(Vector3.zero, dist, speed);
+            if (direction){
+                gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+            } else {
+                dist = -dist;
+                gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+            }
         }
     }
 }
