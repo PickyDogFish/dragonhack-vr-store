@@ -6,11 +6,19 @@ using UnityEngine;
 public class CategoryController : MonoBehaviour
 {
     [SerializeField]
+    private ModelCustomiser modelCustomiser;
+    //Closet prefabs
+    [SerializeField]
     private GameObject shirtCloset;
     [SerializeField]
     private GameObject beanieCloset;
+
+
+    //closet slide direction
     private Vector3 slideDirection = new Vector3(1,0,0);
     private int itemsPerCloset = 8;
+
+    private int itemCount = 0;
 
     //list of instanced closets in the category
     private List<GameObject> closetList = new List<GameObject>();
@@ -25,33 +33,12 @@ public class CategoryController : MonoBehaviour
     {
         //make a request to db for objects of a category
         //figure out the amount of objects you have to spawn
-        StartCoroutine(DataHandler.GetCategories(modelSetup));
+        Category category = new Category();
+        category.id = 1;
+        StartCoroutine(DataHandler.GetProducts(category, loadModels));
 
-        int numOfItems = 20;
 
-        //figure out the closet type of the category
-        string category = "shirt";
-
-        GameObject closet;
-        if (category == "shirt"){
-            closet = shirtCloset;
-        } else {
-            closet = beanieCloset;
-        }
-
-        int numOfClosets = Mathf.CeilToInt(numOfItems/itemsPerCloset);
-        Debug.Log((float)numOfItems/itemsPerCloset);
-        for (int i = 0; i < numOfClosets; i++)
-        {
-            GameObject c = Instantiate(closet, spawnPos, Quaternion.identity);
-            c.GetComponent<Slider>().slideDirection = slideDirection;
-            closetList.Add(c);
-        }
-        reparentClosets();
-        if (closetList.Count > 1){
-            setNextPreviousCloset();
-        }
-        closetList[0].GetComponent<Slider>().setSlideIn(true);
+        
     }
 
     // Update is called once per frame
@@ -78,6 +65,13 @@ public class CategoryController : MonoBehaviour
         }
     }
 
+    void setClosetsModelCustomizer(){
+        foreach (GameObject closet in closetList)
+        {
+            closet.GetComponent<shirtClosetItemManager>().modelCustomiser = modelCustomiser;
+        }
+    }
+
     void reparentClosets(){
         foreach (GameObject closet in closetList)
         {
@@ -87,7 +81,32 @@ public class CategoryController : MonoBehaviour
         }
     }
 
-    void modelSetup(Category[] categories){
-        Debug.Log(categories[1].Name);
+    void loadModels(Product[] products){
+        itemCount = products.Length;
+        Debug.Log(itemCount);
+        //figure out the closet type of the category
+        string cat = "shirt";
+
+        GameObject closet;
+        if (cat == "shirt"){
+            closet = shirtCloset;
+        } else {
+            closet = beanieCloset;
+        }
+
+        int numOfClosets = Mathf.CeilToInt(itemCount/itemsPerCloset);
+        Debug.Log((float)itemCount/itemsPerCloset);
+        for (int i = 0; i < numOfClosets; i++)
+        {
+            GameObject c = Instantiate(closet, spawnPos, Quaternion.identity);
+            c.GetComponent<Slider>().slideDirection = slideDirection;
+            closetList.Add(c);
+        }
+        reparentClosets();
+        if (closetList.Count > 1){
+            setNextPreviousCloset();
+        }
+        setClosetsModelCustomizer();
+        closetList[0].GetComponent<Slider>().setSlideIn(true);
     }
 }
