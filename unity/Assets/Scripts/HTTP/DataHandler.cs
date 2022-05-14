@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class DataHandler {
-    private const string API_URL = "http://192.168.1.104:3000/api/";
+[Serializable]
+class Wrapper<T> {
+    public T[] array;
+}
 
-    IEnumerator GetCategories(Action<Category[]> callback) {
-        using (UnityWebRequest webRequest = new UnityWebRequest(API_URL + "categories")){
+public class DataHandler {
+    private const string API_URL = "http://192.168.7.104:3000/api/";
+
+    public static IEnumerator GetCategories(Action<Category[]> callback) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(API_URL + "categories")){
             yield return webRequest.SendWebRequest();
 
             switch (webRequest.result) {
@@ -18,7 +22,44 @@ public class DataHandler {
                     Debug.LogError(webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    Debug.Log(webRequest.downloadHandler.text);
+                    Category[] categories = JsonUtility.FromJson<Wrapper<Category>>(webRequest.downloadHandler.text).array;
+                    callback(categories);
+                    break;
+            }
+        }
+    }
+
+    public static IEnumerator GetProducts(Category productCategory, Action<Product[]> callback) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(API_URL + "products?category=" + productCategory.id)){
+            yield return webRequest.SendWebRequest();
+
+            switch (webRequest.result) {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.ProtocolError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Product[] products = JsonUtility.FromJson<Wrapper<Product>>(webRequest.downloadHandler.text).array;
+                    callback(products);
+                    break;
+            }
+        }
+    }
+
+    public static IEnumerator GetModelData(int modelId, Action<Model> callback) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(API_URL + "model?id=" + modelId)){
+            yield return webRequest.SendWebRequest();
+
+            switch (webRequest.result) {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.ProtocolError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Model[] models = JsonUtility.FromJson<Wrapper<Model>>(webRequest.downloadHandler.text).array;
+                    callback(models[0]);
                     break;
             }
         }
