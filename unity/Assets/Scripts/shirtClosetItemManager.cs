@@ -27,7 +27,6 @@ public class shirtClosetItemManager : MonoBehaviour
         for (int i = 0; i < products.Length; i++)
         {
             StartCoroutine(DataHandler.GetModelData(products[i].id, (Model model) => {
-                Debug.Log(model.id);
                 StartCoroutine(modelCustomiser.GenerateModel(model, setModels));
             }));
         }
