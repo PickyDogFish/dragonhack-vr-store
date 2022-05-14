@@ -22,6 +22,8 @@ public class CategoryController : MonoBehaviour
     {
         //make a request to db for objects of a category
         //figure out the amount of objects you have to spawn
+        StartCoroutine(DataHandler.GetCategories(modelSetup));
+
         int numOfItems = 15;
 
         //figure out the closet type of the category
@@ -65,5 +67,9 @@ public class CategoryController : MonoBehaviour
             slider.nextCloset = closetList[i+1].GetComponent<Slider>();
             slider.previousCloset = closetList[i-1].GetComponent<Slider>();
         }
+    }
+
+    void modelSetup(Category[] categories){
+        Debug.Log(categories[1].Name);
     }
 }
