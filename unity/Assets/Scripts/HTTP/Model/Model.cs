@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class Model {
     public int id;
-    public string customModel;
-    public string builtinModel;
-    public string textureOverride;
+    public string CustomModel;
+    public string BuiltinModel;
+    public string TextureOverride;
 }
