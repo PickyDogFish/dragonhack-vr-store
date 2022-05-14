@@ -10,7 +10,7 @@ const listAllCategories = async (req, res) => {
 };
 
 const listProducts = (req, res) => {
-    if (!req.query.category){
+    if (!req.query.category) {
         res.status(400).json();
         return;
     }
@@ -22,7 +22,21 @@ const listProducts = (req, res) => {
         });
 }
 
+const getModelData = (req, res) => {
+    if (!req.query.id) {
+        res.status(400).json();
+        return;
+    }
+    con.query("SELECT * FROM Models WHERE id=" + req.query.id)
+        .then(([rows, fields]) => res.status(200).json(rows))
+        .catch((err) => {
+            console.warn("Error in querying model:", err);
+            res.status(500).json();
+        });
+}
+
 module.exports = {
     listAllCategories,
-    listProducts
+    listProducts,
+    getModelData
 }
