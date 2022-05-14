@@ -23,37 +23,32 @@ public class ModelCustomiser : MonoBehaviour {
         //modelToLoad.textureOverride = "shirt_1337.png";
         modelToLoad.customModel = "polica.glb";
 
-        StartCoroutine(GenerateModel(modelToLoad, (GameObject loaded) => {
+        StartCoroutine(GenerateModel(modelToLoad, (GameObject loaded, Model modelData) => {
             loaded.transform.parent = transform;
         }));
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    public IEnumerator GenerateModel(Model modelData, Action<GameObject> callback) {
+    public IEnumerator GenerateModel(Model modelData, Action<GameObject, Model> callback) {
         if (modelData.customModel == null || modelData.customModel.Equals(""))
             return LoadBuiltinModel(modelData, callback);
         else
             return LoadCustomModel(modelData, callback);
     }
 
-    private IEnumerator LoadCustomModel(Model modelData, Action<GameObject> callback) {
+    private IEnumerator LoadCustomModel(Model modelData, Action<GameObject, Model> callback) {
         if (modelData.customModel == null)
             yield break;
         
         GameObject output = new GameObject("custom model");
         GltfImport importer = new GltfImport();
         Task task = importer.Load(MODELS_API_LOCATION + modelData.customModel);
-        yield return new WaitUntil(() => task.IsCompleted);
+        yield return new WaitUntil(() => task.IsCompleted); // Sometimes you just need to make coroutines and await love each other
         importer.InstantiateMainScene(output.transform);
 
-        callback(output);
+        callback(output, modelData);
     }
 
-    private IEnumerator LoadBuiltinModel(Model modelData, Action<GameObject> callback) {
+    private IEnumerator LoadBuiltinModel(Model modelData, Action<GameObject, Model> callback) {
         if (modelData.builtinModel == null || modelData.textureOverride == null)
             yield break;
         GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.builtinModel)]);
@@ -72,6 +67,6 @@ public class ModelCustomiser : MonoBehaviour {
                     break;
             }
         }
-        callback(output);
+        callback(output, modelData);
     }
 }
