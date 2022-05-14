@@ -7,27 +7,17 @@ public class Slider : Grabable
     //ref to next and previous closet in the category
     public Slider nextCloset;
     public Slider previousCloset;
-
-
     //Slidiness, more means more slidy after letting go
     [SerializeField]
     private float slidiness = 0.96f;
-    
-    // A vector that defines the direction
-    // in which the object can slide
+
+    // A vector that defines the direction in which the object can slide
     public Vector3 slideDirection;
-
-    //true is to the right, false is to the left
-    private bool autoSlideDir = true;
-
-
     private GameObject holdingHand = null;
-
     private Vector3 handGrabPos;
     private Vector3 sliderGrabLocalPos;
     private Vector3 handLastFrameMove = Vector3.zero;
     private Vector3 lastPosChange = Vector3.zero;
-
 
     //sliding the closet in vars
     private bool slideIn = false;
@@ -71,11 +61,9 @@ public class Slider : Grabable
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
                         setSlideOut(true);
                         // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
-                        autoSlideDir = true;
                     } else {
                         setSlideOut(false);
                         // setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
-                        autoSlideDir = false;
                     }
                     lastPosChange = Vector3.zero;
                 //not switching, letting it slide
@@ -144,7 +132,6 @@ public class Slider : Grabable
 
         Vector3 slideDist = gameObject.transform.localPosition - goal;
         if (gameObject.transform.localPosition.magnitude > goal.magnitude){
-            Debug.Log("setting slide out to off");
             slideOut = false;
         } else {
             if (direction){
@@ -159,7 +146,6 @@ public class Slider : Grabable
     private void autoSlideIn(float speed, bool direction){
         Vector3 dist = midStopLocation - gameObject.transform.localPosition;
         if (dist.magnitude < 0.01){
-            Debug.Log("setting slide in to off");
             slideIn = false;
         } else {
             if (direction){
