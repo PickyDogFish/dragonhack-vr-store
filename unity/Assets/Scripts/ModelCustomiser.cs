@@ -21,7 +21,7 @@ public class ModelCustomiser : MonoBehaviour {
         Model modelToLoad = new Model();
         //modelToLoad.builtinModel = "shirt";
         //modelToLoad.textureOverride = "shirt_1337.png";
-        modelToLoad.customModel = "polica.glb";
+        modelToLoad.CustomModel = "polica.glb";
 
         StartCoroutine(GenerateModel(modelToLoad, (GameObject loaded, Model modelData) => {
             loaded.transform.parent = transform;
@@ -29,19 +29,19 @@ public class ModelCustomiser : MonoBehaviour {
     }
 
     public IEnumerator GenerateModel(Model modelData, Action<GameObject, Model> callback) {
-        if (modelData.customModel == null || modelData.customModel.Equals(""))
+        if (modelData.CustomModel == null || modelData.CustomModel.Equals(""))
             return LoadBuiltinModel(modelData, callback);
         else
             return LoadCustomModel(modelData, callback);
     }
 
     private IEnumerator LoadCustomModel(Model modelData, Action<GameObject, Model> callback) {
-        if (modelData.customModel == null)
+        if (modelData.CustomModel == null)
             yield break;
         
         GameObject output = new GameObject("custom model");
         GltfImport importer = new GltfImport();
-        Task task = importer.Load(MODELS_API_LOCATION + modelData.customModel);
+        Task task = importer.Load(MODELS_API_LOCATION + modelData.CustomModel);
         yield return new WaitUntil(() => task.IsCompleted); // Sometimes you just need to make coroutines and await love each other
         importer.InstantiateMainScene(output.transform);
 
@@ -49,11 +49,13 @@ public class ModelCustomiser : MonoBehaviour {
     }
 
     private IEnumerator LoadBuiltinModel(Model modelData, Action<GameObject, Model> callback) {
-        if (modelData.builtinModel == null || modelData.textureOverride == null)
+        Debug.Log(modelData.BuiltinModel);
+        Debug.Log(modelData.TextureOverride);
+        if (modelData.BuiltinModel == null || modelData.TextureOverride == null)
             yield break;
-        GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.builtinModel)]);
+        GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.BuiltinModel)]);
         Material mat = output.transform.Find("override").gameObject.GetComponent<MeshRenderer>().material; // Thank you Unity, very cool. You could just implement a GetChild() method, you know?
-        using (UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(TEXTURES_API_LOCATION + modelData.textureOverride)){
+        using (UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(TEXTURES_API_LOCATION + modelData.TextureOverride)){
             yield return textureRequest.SendWebRequest();
             switch (textureRequest.result) {
                 case UnityWebRequest.Result.ConnectionError:

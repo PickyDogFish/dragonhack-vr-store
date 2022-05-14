@@ -2,9 +2,9 @@ using System;
 
 [Serializable]
 public class Product {
-    public string name;
-    public int categoryId;
-    public float price;
-    public int modelId;
+    public string Name;
+    public int CategoryId;
+    public float Price;
+    public int ModelId;
     public int id;
 }

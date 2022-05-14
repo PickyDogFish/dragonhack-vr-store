@@ -22,7 +22,7 @@ public class shirtClosetItemManager : MonoBehaviour
         
     }
 
-    void getModelData(Product[] products){
+    public void loadModelData(Product[] products){
         mapProductsToEmpties(products);
         for (int i = 0; i < products.Length; i++)
         {
@@ -32,8 +32,13 @@ public class shirtClosetItemManager : MonoBehaviour
         }
     }
 
-    void setModels(GameObject obj){
-        
+    void setModels(GameObject obj, Model model){
+        Debug.Log("setting the actual gameobject");
+        if (obj == null){
+            Debug.Log("gameobject is null");
+        }
+        obj.transform.parent = productEmptyTransformMap[model.id];
+        obj.transform.localPosition = Vector3.zero;
     }
 
 
@@ -41,7 +46,7 @@ public class shirtClosetItemManager : MonoBehaviour
     void mapProductsToEmpties(Product[] products){
         for (int i = 0; i < products.Length; i++)
         {
-            productEmptyTransformMap.Add(products[i].id, gameObject.transform.GetChild(i));
+            productEmptyTransformMap.Add(products[i].id, emptyParent.GetChild(i));
         }
     }
 
