@@ -1,6 +1,9 @@
+using System;
+
+[Serializable]
 public class Model {
-    int id { get; set; }
-    string customModel { get; set; }
-    string builtinModel { get; set; }
-    string textureOverride { get; set; }
+    public int id;
+    public string customModel;
+    public string builtinModel;
+    public string textureOverride;
 }

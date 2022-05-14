@@ -1,5 +1,8 @@
+using System;
+
+[Serializable]
 public class Category {
-    string Name { get; set; }
-    int id { get; set; }
-    
+    public string Name;
+    public string DrawerType;
+    public int id; 
 }
