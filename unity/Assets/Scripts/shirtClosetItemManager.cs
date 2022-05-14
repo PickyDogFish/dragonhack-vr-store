@@ -39,6 +39,7 @@ public class shirtClosetItemManager : MonoBehaviour
         }
         obj.transform.parent = productEmptyTransformMap[model.id];
         obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.Euler(0,140,0);
     }
 
 
