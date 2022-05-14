@@ -619,6 +619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae2d847f17ad24498213237a40a57b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextCloset: {fileID: 0}
+  previousCloset: {fileID: 0}
   slidiness: 0.96
   slideDirection: {x: 1, y: 0, z: 0}
 --- !u!65 &1014978945
