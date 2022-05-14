@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class DataHandler {
-    private const string API_URL = "http://192.168.1.104:3000/api/";
+[Serializable]
+class Wrapper<T> {
+    public T[] array;
+}
 
-    IEnumerator GetCategories(Action<Category[]> callback) {
-        using (UnityWebRequest webRequest = new UnityWebRequest(API_URL + "categories")){
+public class DataHandler {
+    private const string API_URL = "http://192.168.7.104:3000/api/";
+
+    public static IEnumerator GetCategories(Action<Category[]> callback) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(API_URL + "categories")){
             yield return webRequest.SendWebRequest();
 
             switch (webRequest.result) {
@@ -18,7 +22,9 @@ public class DataHandler {
                     Debug.LogError(webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    Debug.Log(webRequest.downloadHandler.text);
+                    Category[] categories = JsonUtility.FromJson<Wrapper<Category>>(webRequest.downloadHandler.text).array;
+                    Debug.Log(categories[0].Name);
+                    callback(categories);
                     break;
             }
         }
