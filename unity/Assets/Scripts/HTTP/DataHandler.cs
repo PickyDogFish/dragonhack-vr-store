@@ -9,7 +9,8 @@ class Wrapper<T> {
 }
 
 public class DataHandler {
-    private const string API_URL = "http://192.168.7.104:3000/api/";
+    public const string SERVER_URL = "http://192.168.7.104:3000/";
+    public const string API_URL = SERVER_URL + "api/";
 
     public static IEnumerator GetCategories(Action<Category[]> callback) {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(API_URL + "categories")){
