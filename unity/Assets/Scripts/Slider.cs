@@ -132,7 +132,6 @@ public class Slider : Grabable
 
         Vector3 slideDist = gameObject.transform.localPosition - goal;
         if (gameObject.transform.localPosition.magnitude > goal.magnitude){
-            Debug.Log("setting slide out to off");
             slideOut = false;
         } else {
             if (direction){
@@ -147,7 +146,6 @@ public class Slider : Grabable
     private void autoSlideIn(float speed, bool direction){
         Vector3 dist = midStopLocation - gameObject.transform.localPosition;
         if (dist.magnitude < 0.01){
-            Debug.Log("setting slide in to off");
             slideIn = false;
         } else {
             if (direction){

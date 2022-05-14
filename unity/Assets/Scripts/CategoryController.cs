@@ -75,7 +75,6 @@ public class CategoryController : MonoBehaviour
     void reparentClosets(){
         foreach (GameObject closet in closetList)
         {
-            Debug.Log("setting parent");
             closet.transform.parent = gameObject.transform;
             closet.transform.localPosition = spawnPos;
         }
@@ -95,7 +94,6 @@ public class CategoryController : MonoBehaviour
         }
 
         int numOfClosets = Mathf.CeilToInt(itemCount/itemsPerCloset);
-        Debug.Log((float)itemCount/itemsPerCloset);
         for (int i = 0; i < numOfClosets; i++)
         {
             GameObject c = Instantiate(closet, spawnPos, Quaternion.identity);

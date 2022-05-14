@@ -20,7 +20,6 @@ public class Item : Grabable
 
     public override void OnGrab(GameObject obj){
         if (holdingHand == null){
-            Debug.Log("object grabbed");
             holdingHand = obj;
             gameObject.transform.parent = obj.transform;
         }
