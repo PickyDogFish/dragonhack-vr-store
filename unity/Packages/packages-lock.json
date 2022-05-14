@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "com.atteneder.gltfast": {
+      "version": "https://github.com/atteneder/glTFast.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequesttexture": "1.0.0",
+        "com.unity.mathematics": "1.2.6",
+        "com.unity.burst": "1.6.5"
+      },
+      "hash": "6602ee4790ab25d1df4c625baf1fba81bbd3fdb0"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
