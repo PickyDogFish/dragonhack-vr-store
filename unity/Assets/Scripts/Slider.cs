@@ -13,7 +13,13 @@ public class Slider : Grabable
     [SerializeField]
     private Vector3 slideDirection;
 
-    private bool slidingAway = false;
+    private bool autoSliding = false;
+    private Vector3 autoSlideTo = Vector3.zero;
+    private float autoSlideSpeed;
+
+
+
+
     private GameObject holdingHand = null;
 
     private Vector3 handGrabPos;
@@ -30,7 +36,7 @@ public class Slider : Grabable
     // Update is called once per frame
     void Update()
     {
-        if (!slidingAway){
+        if (!autoSliding){
             if (holdingHand != null){
                 Vector3 handMove = holdingHand.transform.position - handGrabPos;
                 Vector3 projected = Vector3.Project(handMove, slideDirection);
@@ -39,9 +45,15 @@ public class Slider : Grabable
                 handLastFrameMove = handMove;
             } else {
                 //Move according to inertia
-                lastPosChange = scaleInertia(lastPosChange);
-                gameObject.transform.localPosition += lastPosChange;
+                if (lastPosChange.magnitude > 0.039f){
+                    setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f);
+                } else {
+                    lastPosChange = scaleSlide();
+                    gameObject.transform.localPosition += lastPosChange;
+                }
             }
+        } else {
+            autoSlideConst(autoSlideSpeed);
         }
     }
 
@@ -59,11 +71,30 @@ public class Slider : Grabable
         }
     }
 
-    private Vector3 scaleInertia(Vector3 speed){
-        return Vector3.Lerp(Vector3.zero,lastPosChange, slidiness);
+    private Vector3 scaleSlide(){
+        return Vector3.Lerp(Vector3.zero, lastPosChange, slidiness);
     }
 
-    public void slideAway(){
-        slidingAway = true;
+    public void setAutoSlidePos(Vector3 pos, float speed){
+        Debug.Log("autosliding set");
+        autoSlideTo = pos;
+        autoSliding = true;
+        autoSlideSpeed = speed;
+    }
+
+    //Slides in from current position towards given position
+    //With speed given by lerp value
+    private void autoSlideConst(float speed){
+        Vector3 slideDist = gameObject.transform.localPosition - autoSlideTo;
+        if (slideDist.magnitude < 0.001){
+            autoSliding = false;
+        } else {
+            gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
+        }
+    }
+
+    private void autoSlideDecelerateTo(float speed){
+        Vector3 dist = autoSlideTo - gameObject.transform.localPosition;
+        gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
     }
 }
