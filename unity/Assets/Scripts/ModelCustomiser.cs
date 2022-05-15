@@ -16,7 +16,6 @@ public class ModelCustomiser : MonoBehaviour {
     [SerializeField]
     private List<String> builtinNames;
 
-    // Start is called before the first frame update
     void Start() {
         Model modelToLoad = new Model();
         //modelToLoad.builtinModel = "shirt";
