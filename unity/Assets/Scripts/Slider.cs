@@ -40,8 +40,8 @@ public class Slider : Grabable
     void Start()
     {
         slideDirection = slideDirection.normalized;
-        startStopLocation = slideDirection * -5;
-        endStopLocation = slideDirection * 5;
+        startStopLocation = slideDirection * -10;
+        endStopLocation = slideDirection * 10;
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class Slider : Grabable
                 handLastFrameMove = handMove;
             } else {
                 //if true we are switching the closet
-                if (lastPosChange.magnitude > 0.035f){
+                if (lastPosChange.magnitude > 0.028f){
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
                         setSlideOut(true);
                         // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);

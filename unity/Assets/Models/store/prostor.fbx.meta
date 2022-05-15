@@ -3,7 +3,12 @@ guid: 38c7d78441dc9cc4e8200d80c940e279
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mirror.001
+    second: {fileID: 2100000, guid: 2dda07756269d5c41bc81590b4c86f6b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

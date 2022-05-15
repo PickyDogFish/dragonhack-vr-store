@@ -49,8 +49,6 @@ public class ModelCustomiser : MonoBehaviour {
     }
 
     private IEnumerator LoadBuiltinModel(Model modelData, Action<GameObject, Model> callback) {
-        Debug.Log(modelData.BuiltinModel);
-        Debug.Log(modelData.TextureOverride);
         if (modelData.BuiltinModel == null || modelData.TextureOverride == null)
             yield break;
         GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.BuiltinModel)]);
