@@ -195,6 +195,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949d3b83270ab33409714d37bbb3baba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &402520352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402520353}
+  - component: {fileID: 402520354}
+  - component: {fileID: 402520355}
+  - component: {fileID: 402520356}
+  - component: {fileID: 402520357}
+  m_Layer: 0
+  m_Name: Shirt Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402520353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402520352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1725982594}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1818360608 &402520354
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402520352}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: -0.3, z: 0}
+  m_TranslationOffset: {x: 0, y: -0.3, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 963194228}
+    weight: 1
+--- !u!1818360609 &402520355
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402520352}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 0
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 0
+  m_IsContraintActive: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 963194228}
+    weight: 1
+--- !u!65 &402520356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402520352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46, y: 0.67, z: 0.37}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &402520357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402520352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9ebf4693ecff443b8c0ef260f15c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wornShirtTemplate: {fileID: 1590602722487223162, guid: ea3ea9d0dd635ea4d8ba9025804bf2f5, type: 3}
 --- !u!95 &435883284 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3078298999185722564, guid: fb61a9053171aaa489e54f40f1578b41, type: 3}
@@ -504,14 +603,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925777636}
-  m_LocalRotation: {x: 0.13958246, y: 0.00075899594, z: -0.0004332409, w: 0.99021006}
+  m_LocalRotation: {x: 0.2912687, y: 0.0006827332, z: -0.00054557127, w: 0.9566409}
   m_LocalPosition: {x: 0.0003, y: 2.2884, z: 46.3623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 871143967}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 163.953, y: 180.082, z: 179.961}
+  m_LocalEulerAnglesHint: {x: 146.132, y: 180.068, z: 179.955}
 --- !u!20 &925777639
 Camera:
   m_ObjectHideFlags: 0
@@ -708,11 +807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f226d89c7ed99184089c3d4e6e35e8fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f226d89c7ed99184089c3d4e6e35e8fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.032
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f226d89c7ed99184089c3d4e6e35e8fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -860,6 +959,7 @@ Transform:
   - {fileID: 1045848416}
   - {fileID: 541096546}
   - {fileID: 1728657556}
+  - {fileID: 402520353}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
