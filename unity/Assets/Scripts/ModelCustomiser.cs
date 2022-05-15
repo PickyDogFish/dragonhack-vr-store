@@ -43,6 +43,7 @@ public class ModelCustomiser : MonoBehaviour {
         Task task = importer.Load(MODELS_API_LOCATION + modelData.CustomModel);
         yield return new WaitUntil(() => task.IsCompleted); // Sometimes you just need to make coroutines and await love each other
         importer.InstantiateMainScene(output.transform);
+        output.AddComponent<Item>();
 
         callback(output, modelData);
     }
