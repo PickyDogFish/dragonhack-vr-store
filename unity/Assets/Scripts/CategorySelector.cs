@@ -18,7 +18,7 @@ public class CategorySelector : Grabable {
     void Start() {
         center = transform.localPosition.y;
     }
-    
+
     void Update() {
         if (currentlyHeldHand != null) {
             // Calculate up/down position
@@ -51,7 +51,7 @@ public class CategorySelector : Grabable {
         }
     }
 
-    public int GetSelectedCategory(){
+    public int GetSelectedCategory() {
         float betweenTwo = 1.0f / (categoryCount - 1);
         return (int)Math.Round((1 - GetValue()) / betweenTwo);
     }
