@@ -57,7 +57,7 @@ public class Slider : Grabable
                 handLastFrameMove = handMove;
             } else {
                 //if true we are switching the closet
-                if (lastPosChange.magnitude > 0.035f){
+                if (lastPosChange.magnitude > 0.028f){
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
                         setSlideOut(true);
                         // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
