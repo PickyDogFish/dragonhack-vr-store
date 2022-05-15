@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: bc86bbe69c80f8f438ce7abcd4540fcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 4de6e48fc377b6348b664c10eaecf252, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mirror
+    second: {fileID: 2100000, guid: e0aff1b5b2d80fa49bec5f1c4e42fd57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: mirror.001
     second: {fileID: 2100000, guid: 2dda07756269d5c41bc81590b4c86f6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nalepke
+    second: {fileID: 2100000, guid: 457bfb945337abf4885c3b4b9aaed705, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: prostor
+    second: {fileID: 2100000, guid: 7b9ca71dcf7a7a54183c34cb8ecfb759, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

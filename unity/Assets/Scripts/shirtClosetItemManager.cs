@@ -14,6 +14,7 @@ public class shirtClosetItemManager : MonoBehaviour
 
     [SerializeField]
     private Transform canvas;
+    private List<Product> productList = new List<Product>(); 
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class shirtClosetItemManager : MonoBehaviour
     }
 
     public void loadModelData(Product[] products){
+        productList.AddRange(products);
         mapProductsToEmpties(products);
         for (int i = 0; i < products.Length; i++)
         {
@@ -43,6 +45,7 @@ public class shirtClosetItemManager : MonoBehaviour
     }
 
     void setModels(GameObject obj, Model model){
+        obj.GetComponentInChildren<Item>().product = findProductWithModelId(model.id);
         obj.transform.parent = productEmptyTransformMap[model.id];
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.Euler(0,140,0);
@@ -56,6 +59,18 @@ public class shirtClosetItemManager : MonoBehaviour
             productEmptyTransformMap.Add(products[i].ModelId, emptyParent.GetChild(i));
             productTextMap.Add(products[i].ModelId, canvas.GetChild(i).GetComponent<TextMeshProUGUI>());
         }
+    }
+
+    // Returns the product with the given modelId
+    Product findProductWithModelId(int modelId){
+        Product res = productList[0];
+        foreach (Product prod in productList)
+        {
+            if (prod.ModelId == modelId){
+                res = prod;
+            }
+        }
+        return res;
     }
 
 }
