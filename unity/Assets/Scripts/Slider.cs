@@ -131,13 +131,10 @@ public class Slider : Grabable
         if (gameObject.transform.localPosition.magnitude > goal.magnitude){
             slideOut = false;
         } else {
-            // Debug.Log(slideOutFromLeft);
             // gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
             if (slideOutFromLeft){
-                Debug.Log("Sliding out in direction");
                 gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
             } else {
-                Debug.Log("Sliding out in other direction");
                 gameObject.transform.localPosition -= Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
             }
         }
@@ -150,7 +147,6 @@ public class Slider : Grabable
             slideIn = false;
         } else {
             // gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
-            Debug.Log(slideInFromLeft);
             if (!slideInFromLeft){
                 gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
             } else {
