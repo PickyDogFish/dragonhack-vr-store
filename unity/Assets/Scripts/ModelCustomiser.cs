@@ -37,7 +37,7 @@ public class ModelCustomiser : MonoBehaviour {
     private IEnumerator LoadCustomModel(Model modelData, Action<GameObject, Model> callback) {
         if (modelData.CustomModel == null)
             yield break;
-        
+
         GameObject output = new GameObject("custom model");
         GltfImport importer = new GltfImport();
         Task task = importer.Load(MODELS_API_LOCATION + modelData.CustomModel);
@@ -52,7 +52,7 @@ public class ModelCustomiser : MonoBehaviour {
             yield break;
         GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.BuiltinModel)]);
         Material mat = output.transform.Find("model/override").gameObject.GetComponent<MeshRenderer>().material; // Thank you Unity, very cool. You could just implement a GetChild() method, you know?
-        using (UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(TEXTURES_API_LOCATION + modelData.TextureOverride)){
+        using (UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(TEXTURES_API_LOCATION + modelData.TextureOverride)) {
             yield return textureRequest.SendWebRequest();
             switch (textureRequest.result) {
                 case UnityWebRequest.Result.ConnectionError:
