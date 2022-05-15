@@ -25,7 +25,6 @@ public class CategoryController : MonoBehaviour
 
     //index of the closet the player is currently seeing
     private int curCloset = -1;
-    // Start is called before the first frame update
 
     [SerializeField]
     private Vector3 spawnPos = new Vector3(-5,0,0);
@@ -41,7 +40,6 @@ public class CategoryController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
