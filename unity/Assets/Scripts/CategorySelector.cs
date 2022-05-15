@@ -9,7 +9,7 @@ public class CategorySelector : Grabable {
     [SerializeField]
     private float deadzone = 0.05f;
     [SerializeField]
-    private int categoryCount = 3;
+    public int categoryCount = 3;
     private float center;
     private GameObject currentlyHeldHand = null;
     private float posOnGrabbed;

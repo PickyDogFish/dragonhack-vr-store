@@ -3,7 +3,12 @@ guid: 422cc5ace201016469b79f90d9004841
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tshirt_omara
+    second: {fileID: 2100000, guid: d3993b9e4d5cd65458460be4650ead58, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

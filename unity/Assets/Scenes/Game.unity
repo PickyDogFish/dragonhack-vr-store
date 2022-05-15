@@ -803,7 +803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelCustomiser: {fileID: 1773724215}
   shirtCloset: {fileID: 2900716395662708883, guid: cffa650312883234a9d575b2e1464832, type: 3}
-  beanieCloset: {fileID: 0}
+  beanieCloset: {fileID: 2900716395662708883, guid: d1231098c5524f646bc68d9082f0f521, type: 3}
+  customCloset: {fileID: 2900716395662708883, guid: 779c067c0ac54a441bdbae0207b8171b, type: 3}
   spawnPos: {x: -8, y: 0, z: 0}
 --- !u!4 &1642751637 stripped
 Transform:
@@ -1083,6 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773950311}
+  - component: {fileID: 1773950312}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -1107,6 +1109,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773950312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773950310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2d7173ee6d0604c9a9f44a2d74a194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  categoryController: {fileID: 1605424007}
+  categorySelector: {fileID: 718190318}
 --- !u!4 &1808096399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8654874124658563583, guid: a61bb48234784634c86eafa8f68276b7, type: 3}

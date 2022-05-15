@@ -12,6 +12,8 @@ public class CategoryController : MonoBehaviour {
     private GameObject shirtCloset;
     [SerializeField]
     private GameObject beanieCloset;
+    [SerializeField]
+    private GameObject customCloset;
 
     //closet slide direction
     private Vector3 slideDirection = new Vector3(1, 0, 0);
@@ -27,11 +29,13 @@ public class CategoryController : MonoBehaviour {
 
     [SerializeField]
     private Vector3 spawnPos = new Vector3(-5, 0, 0);
+    private Category category;
     void Start() {
-        //make a request to db for objects of a category
-        //figure out the amount of objects you have to spawn
-        Category category = new Category();
-        category.id = 2;
+    }
+
+    public void loadProducts(Category categoryToLoad){
+        unloadCategory();
+        category = categoryToLoad;
         StartCoroutine(DataHandler.GetProducts(category, loadModels));
     }
 
@@ -66,18 +70,18 @@ public class CategoryController : MonoBehaviour {
     }
 
     void loadModels(Product[] products) {
-        itemCount = products.Length;
-        //figure out the closet type of the category
-        string cat = "shirt";
-
         GameObject closet;
-        if (cat == "shirt") {
+        if (category.DrawerType == "hangers") {
             closet = shirtCloset;
             itemsPerCloset = 6;
-        } else {
+        } else if (category.DrawerType == "shelves"){
             closet = beanieCloset;
+            itemsPerCloset = 8;
+        } else {
+            closet = customCloset;
         }
 
+        itemCount = products.Length;
         int numOfClosets = Mathf.CeilToInt((float)itemCount / itemsPerCloset);
         for (int i = 0; i < numOfClosets; i++) {
             GameObject c = Instantiate(closet, spawnPos, Quaternion.identity);
@@ -107,5 +111,14 @@ public class CategoryController : MonoBehaviour {
         }
 
         closetList[0].GetComponent<Slider>().setSlideIn(true);
+    }
+
+    void unloadCategory(){
+        while (closetList.Count > 0)
+        {
+            GameObject closetToBeDestroyed = closetList[0];
+            closetList.RemoveAt(0);
+            Destroy(closetToBeDestroyed);
+        }
     }
 }
