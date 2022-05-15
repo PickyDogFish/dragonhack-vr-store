@@ -17,12 +17,14 @@ public class ShopController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        int selectedCategory = categorySelector.GetSelectedCategory();
-        if (selectedCategory != currentCategory){
-            currentCategory = selectedCategory;
-            categoryController.loadProducts(categoryList[currentCategory]);
-        }
+    {   
+        if (categoryList.Count > 0){
+            int selectedCategory = categorySelector.GetSelectedCategory();
+            if (selectedCategory != currentCategory){
+                currentCategory = selectedCategory;
+                categoryController.loadProducts(categoryList[currentCategory]);
+            }
+        } 
     }
 
     void OnCategoriesReceived(Category[] categories){
