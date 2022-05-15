@@ -34,6 +34,7 @@ public class shirtClosetItemManager : MonoBehaviour
 
     void setModels(GameObject obj, Model model){
         obj.GetComponentInChildren<Item>().product = findProductWithModelId(model.id);
+        obj.GetComponentInChildren<Item>().model = model;
         obj.transform.parent = productEmptyTransformMap[model.id];
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.Euler(0,140,0);

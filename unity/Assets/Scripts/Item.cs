@@ -7,6 +7,7 @@ public class Item : Grabable
     private GameObject holdingHand = null;
     private Transform originalParent;
     public Product product;
+    public Model model;
     
     void Start()
     {

@@ -110,10 +110,8 @@ public class Slider : Grabable
         slideIn = true;
         slideInFromLeft = fromLeft;
         if (fromLeft){
-            Debug.Log("coming from left");
             gameObject.transform.localPosition = startStopLocation;
         } else {
-            Debug.Log("coming from right");
             gameObject.transform.localPosition = endStopLocation;
         }
     }
