@@ -6,15 +6,11 @@ public class Item : Grabable
 {
     private GameObject holdingHand = null;
     private Transform originalParent;
+    public Product product;
     
     void Start()
     {
         originalParent = gameObject.transform.parent;
-    }
-
-    void Update()
-    {
-        
     }
 
     public override void OnGrab(GameObject obj){
