@@ -59,9 +59,11 @@ public class Slider : Grabable
                 //if true we are switching the closet
                 if (lastPosChange.magnitude > 0.028f){
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1){
+                        Debug.Log("sliding true");
                         setSlideOut(true);
                         // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                     } else {
+                        Debug.Log("sliding false");
                         setSlideOut(false);
                         // setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                     }
@@ -74,9 +76,9 @@ public class Slider : Grabable
             }
         } else {
             if (slideIn){
-                autoSlideIn(0.05f, slideInFromLeft);
+                autoSlideIn(0.05f);
             } else if (slideOut){
-                autoSlideOut(0.08f, slideOutFromLeft);
+                autoSlideOut(0.08f);
                 if (slideOutFromLeft){
                     nextCloset.setSlideIn(true);
                 } else {
@@ -106,25 +108,27 @@ public class Slider : Grabable
 
     public void setSlideOut(bool fromLeft){
         slideOut = true;
-        slideInFromLeft = fromLeft;
+        slideOutFromLeft = fromLeft;
     }
 
     public void setSlideIn(bool fromLeft){
         slideIn = true;
         slideInFromLeft = fromLeft;
         if (fromLeft){
-            gameObject.transform.localPosition = endStopLocation;
-        } else {
+            Debug.Log("coming from left");
             gameObject.transform.localPosition = startStopLocation;
+        } else {
+            Debug.Log("coming from right");
+            gameObject.transform.localPosition = endStopLocation;
         }
     }
 
     //Slides in from current position towards autoSlideTo
     //With speed given by lerp value
     //if direction true slide to right, false slide to left
-    private void autoSlideOut(float speed, bool direction){
+    private void autoSlideOut(float speed){
         Vector3 goal;
-        if (direction){
+        if (slideOutFromLeft){
             goal = endStopLocation;
         } else {
             goal = startStopLocation;
@@ -134,24 +138,29 @@ public class Slider : Grabable
         if (gameObject.transform.localPosition.magnitude > goal.magnitude){
             slideOut = false;
         } else {
-            if (direction){
-                gameObject.transform.localPosition -= Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
-            } else {
+            // Debug.Log(slideOutFromLeft);
+            // gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
+            if (slideOutFromLeft){
+                Debug.Log("Sliding out in direction");
                 gameObject.transform.localPosition += Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
+            } else {
+                Debug.Log("Sliding out in other direction");
+                gameObject.transform.localPosition -= Vector3.Project(new Vector3(1,1,1), slideDirection).normalized * speed;
             }
         }
     }
 
     //if direction true slide left to right, false slide right to left
-    private void autoSlideIn(float speed, bool direction){
+    private void autoSlideIn(float speed){
         Vector3 dist = midStopLocation - gameObject.transform.localPosition;
         if (dist.magnitude < 0.01){
             slideIn = false;
         } else {
-            if (direction){
+            // gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
+            Debug.Log(slideInFromLeft);
+            if (!slideInFromLeft){
                 gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
             } else {
-                dist = -dist;
                 gameObject.transform.localPosition += Vector3.Lerp(Vector3.zero, dist, speed);
             }
         }

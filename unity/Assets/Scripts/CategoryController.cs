@@ -116,7 +116,7 @@ public class CategoryController : MonoBehaviour
                 Product[] closetItems = new Product[6];
                 Array.Copy(products, i* itemsPerCloset, closetItems, 0, 6);
                 tempCloset.GetComponent<shirtClosetItemManager>().loadModelData(closetItems);
-                Debug.Log("post");
+                // Debug.Log("post");
             } else {
                 // not enough products to fill up the whole closet
                 int productsLeft = products.Length - i * itemsPerCloset;
