@@ -930,8 +930,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   builtinModels:
+  - {fileID: 919132149155446097, guid: ed498938ea4683f42b63f105c2b7e609, type: 3}
   - {fileID: 919132149155446097, guid: fcb431a597e03e046904fa6a59233b29, type: 3}
   builtinNames:
+  - hat
   - shirt
 --- !u!4 &1773724216
 Transform:
