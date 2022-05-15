@@ -67,7 +67,6 @@ public class CategoryController : MonoBehaviour {
 
     void loadModels(Product[] products) {
         itemCount = products.Length;
-        Debug.Log(itemCount);
         //figure out the closet type of the category
         string cat = "shirt";
 
@@ -79,7 +78,7 @@ public class CategoryController : MonoBehaviour {
             closet = beanieCloset;
         }
 
-        int numOfClosets = Mathf.CeilToInt(itemCount / itemsPerCloset);
+        int numOfClosets = Mathf.CeilToInt((float)itemCount / itemsPerCloset);
         for (int i = 0; i < numOfClosets; i++) {
             GameObject c = Instantiate(closet, spawnPos, Quaternion.identity);
             c.GetComponent<Slider>().slideDirection = slideDirection;
@@ -94,15 +93,12 @@ public class CategoryController : MonoBehaviour {
         for (int i = 0; i < closetList.Count; i++) {
             GameObject tempCloset = closetList[i];
             if (products.Length >= i * itemsPerCloset + 6) {
-
-                Debug.Log(itemsPerCloset);
                 Product[] closetItems = new Product[6];
                 Array.Copy(products, i * itemsPerCloset, closetItems, 0, 6);
                 tempCloset.GetComponent<ShirtClosetItemManager>().loadModelData(closetItems);
             } else {
                 // not enough products to fill up the whole closet
                 int productsLeft = products.Length - i * itemsPerCloset;
-                Debug.Log("stuff and things");
                 Product[] closetItems = new Product[productsLeft];
                 Array.Copy(products, i * itemsPerCloset, closetItems, 0, productsLeft);
                 tempCloset.GetComponent<ShirtClosetItemManager>().loadModelData(closetItems);
