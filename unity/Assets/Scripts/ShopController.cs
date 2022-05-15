@@ -16,7 +16,6 @@ public class ShopController : MonoBehaviour
         StartCoroutine(DataHandler.GetCategories(OnCategoriesReceived));
     }
 
-    // Update is called once per frame
     void Update()
     {   
         if (categoryList.Count > 0){
