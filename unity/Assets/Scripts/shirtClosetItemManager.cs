@@ -16,18 +16,6 @@ public class shirtClosetItemManager : MonoBehaviour
     private Transform canvas;
     private List<Product> productList = new List<Product>(); 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void loadModelData(Product[] products){
         productList.AddRange(products);
         mapProductsToEmpties(products);
