@@ -40,11 +40,6 @@ public class CategoryController : MonoBehaviour
         
     }
 
-    void Update()
-    {
-        
-    }
-
     void setNextPreviousCloset(){
         Slider first = closetList[0].GetComponent<Slider>();
         Slider last = closetList[closetList.Count-1].GetComponent<Slider>();
@@ -124,8 +119,7 @@ public class CategoryController : MonoBehaviour
                 tempCloset.GetComponent<shirtClosetItemManager>().loadModelData(closetItems);
                 break;
             }
-        }
-        
+        }        
 
         closetList[0].GetComponent<Slider>().setSlideIn(true);
     }
