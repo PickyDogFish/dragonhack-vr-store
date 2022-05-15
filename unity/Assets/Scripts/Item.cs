@@ -12,11 +12,6 @@ public class Item : Grabable
         originalParent = gameObject.transform.parent;
     }
 
-    void Update()
-    {
-        
-    }
-
     public override void OnGrab(GameObject obj){
         if (holdingHand == null){
             holdingHand = obj;
