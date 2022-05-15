@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CategorySelector : Grabable {
     [Range(0, 0.3f)]
@@ -7,6 +8,8 @@ public class CategorySelector : Grabable {
     [Range(0, 1)]
     [SerializeField]
     private float deadzone = 0.05f;
+    [SerializeField]
+    private int categoryCount = 3;
     private float center;
     private GameObject currentlyHeldHand = null;
     private float posOnGrabbed;
@@ -40,15 +43,20 @@ public class CategorySelector : Grabable {
         if (currentlyHeldHand == hand) {
             currentlyHeldHand = null;
             // Clipping
-            if (Mathf.Abs(GetValue()) < deadzone) {
-                Vector3 pos = transform.localPosition;
-                pos.y = center;
-                transform.localPosition = pos;
-            }
+            float betweenTwo = 1.0f / (categoryCount - 1);
+            int offsetAmount = (int)Math.Round(GetValue() / betweenTwo);
+            float finalY = Remap(betweenTwo * offsetAmount, 0, 1, center - offsetRange, center + offsetRange);
+            Vector3 localPos = transform.localPosition;
+            transform.localPosition = new Vector3(localPos.x, finalY, localPos.z);
         }
     }
 
-    public float GetValue() {
+    public int GetSelectedCategory(){
+        float betweenTwo = 1.0f / (categoryCount - 1);
+        return (int)Math.Round((1 - GetValue()) / betweenTwo);
+    }
+
+    private float GetValue() {
         return Remap(transform.localPosition.y, center - offsetRange, center + offsetRange, 0, 1);
     }
 
