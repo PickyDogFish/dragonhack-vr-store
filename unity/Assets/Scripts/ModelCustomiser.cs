@@ -52,7 +52,7 @@ public class ModelCustomiser : MonoBehaviour {
         if (modelData.BuiltinModel == null || modelData.TextureOverride == null)
             yield break;
         GameObject output = Instantiate(builtinModels[builtinNames.IndexOf(modelData.BuiltinModel)]);
-        Material mat = output.transform.Find("override").gameObject.GetComponent<MeshRenderer>().material; // Thank you Unity, very cool. You could just implement a GetChild() method, you know?
+        Material mat = output.transform.Find("model/override").gameObject.GetComponent<MeshRenderer>().material; // Thank you Unity, very cool. You could just implement a GetChild() method, you know?
         using (UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(TEXTURES_API_LOCATION + modelData.TextureOverride)){
             yield return textureRequest.SendWebRequest();
             switch (textureRequest.result) {
