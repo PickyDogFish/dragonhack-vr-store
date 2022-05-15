@@ -9,7 +9,6 @@ public class HandDirection : MonoBehaviour
     public Vector3 handUp { get; private set;}
     public Vector3 handForward { get; private set;}
 
-    // Update is called once per frame
     void Update()
     {
         handUp = handTransform.TransformDirection(Vector3.up);

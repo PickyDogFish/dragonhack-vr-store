@@ -33,10 +33,6 @@ public class Slider : Grabable
     public Vector3 endStopLocation;
     
 
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         slideDirection = slideDirection.normalized;
@@ -44,7 +40,6 @@ public class Slider : Grabable
         endStopLocation = slideDirection * 10;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!slideIn && !slideOut){
