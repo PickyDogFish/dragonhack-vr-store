@@ -42,6 +42,9 @@ public class ModelCustomiser : MonoBehaviour {
         yield return new WaitUntil(() => task.IsCompleted); // Sometimes you just need to make coroutines and await love each other
         importer.InstantiateMainScene(output.transform);
         output.AddComponent<Item>();
+        output.AddComponent<BoxCollider>();
+        output.GetComponent<BoxCollider>().size = new Vector3(0.3f,0.3f,0.3f);
+        output.GetComponent<BoxCollider>().center = new Vector3(0,0.1f,0);
 
         callback(output, modelData);
     }
