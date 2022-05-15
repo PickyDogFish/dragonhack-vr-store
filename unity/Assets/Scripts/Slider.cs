@@ -31,6 +31,8 @@ public class Slider : Grabable {
     public Vector3 startStopLocation;
     public Vector3 endStopLocation;
 
+    private bool wasGrabbed = false;
+
 
     void Start() {
         slideDirection = slideDirection.normalized;
@@ -46,17 +48,30 @@ public class Slider : Grabable {
                 Vector3 projected = Vector3.Project(handMove, slideDirection);
                 gameObject.transform.localPosition = sliderGrabLocalPos + projected;
                 lastPosChange = Vector3.Project(handMove - handLastFrameMove, slideDirection);
+                if (lastPosChange != Vector3.zero){
+                    wasGrabbed = true;
+                }
                 handLastFrameMove = handMove;
             } else {
                 //if true we are switching the closet
                 if (lastPosChange.magnitude > 0.028f) {
+                    
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1) {
                         setSlideOut(true);
                     } else {
                         setSlideOut(false);
                     }
                     lastPosChange = Vector3.zero;
+                    wasGrabbed = false;
                     //not switching, letting it slide
+                } else if (Vector3.Distance(midStopLocation, transform.localPosition) > 1 && !slideOut && !slideIn && wasGrabbed){
+                    Debug.Log(Vector3.Dot(transform.position - midStopLocation, slideDirection.normalized));
+                    if (Vector3.Dot(transform.position - midStopLocation, slideDirection.normalized) > 0) {
+                        setSlideOut(true);
+                    } else {
+                        setSlideOut(false);
+                    }
+                    wasGrabbed = false;
                 } else {
                     lastPosChange = scaleSlide();
                     gameObject.transform.localPosition += lastPosChange;
