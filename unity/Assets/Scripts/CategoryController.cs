@@ -82,7 +82,6 @@ public class CategoryController : MonoBehaviour
 
     void loadModels(Product[] products){
         itemCount = products.Length;
-        Debug.Log(itemCount);
         //figure out the closet type of the category
         string cat = "shirt";
 
