@@ -36,7 +36,6 @@ public class CategoryController : MonoBehaviour {
     public void loadProducts(Category categoryToLoad){
         unloadCategory();
         category = categoryToLoad;
-        Debug.Log(category.id);
         StartCoroutine(DataHandler.GetProducts(category, loadModels));
     }
 
@@ -71,9 +70,6 @@ public class CategoryController : MonoBehaviour {
     }
 
     void loadModels(Product[] products) {
-        Debug.Log("loading models");
-        Debug.Log(category.Name);
-        Debug.Log(products.Length);
         GameObject closet;
         if (category.DrawerType == "hangers") {
             closet = shirtCloset;

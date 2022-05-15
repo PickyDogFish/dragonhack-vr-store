@@ -51,13 +51,9 @@ public class Slider : Grabable {
                 //if true we are switching the closet
                 if (lastPosChange.magnitude > 0.028f) {
                     if (Vector3.Dot(lastPosChange.normalized, slideDirection.normalized) == 1) {
-                        Debug.Log("sliding true");
                         setSlideOut(true);
-                        // setAutoSlidePos(gameObject.transform.localPosition + Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                     } else {
-                        Debug.Log("sliding false");
                         setSlideOut(false);
-                        // setAutoSlidePos(gameObject.transform.localPosition - Vector3.Project(new Vector3(10,10,10), slideDirection), 0.1f, outDir);
                     }
                     lastPosChange = Vector3.zero;
                     //not switching, letting it slide

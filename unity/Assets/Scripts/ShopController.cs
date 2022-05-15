@@ -23,7 +23,6 @@ public class ShopController : MonoBehaviour
             int selectedCategory = categorySelector.GetSelectedCategory();
             if (selectedCategory != currentCategory){
                 currentCategory = selectedCategory;
-                Debug.Log("loading from update");
                 categoryController.loadProducts(categoryList[currentCategory]);
             }
         } 
