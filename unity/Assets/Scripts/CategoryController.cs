@@ -96,9 +96,9 @@ public class CategoryController : MonoBehaviour {
 
         for (int i = 0; i < closetList.Count; i++) {
             GameObject tempCloset = closetList[i];
-            if (products.Length >= i * itemsPerCloset + 6) {
-                Product[] closetItems = new Product[6];
-                Array.Copy(products, i * itemsPerCloset, closetItems, 0, 6);
+            if (products.Length >= i * itemsPerCloset + itemsPerCloset) {
+                Product[] closetItems = new Product[itemsPerCloset];
+                Array.Copy(products, i * itemsPerCloset, closetItems, 0, itemsPerCloset);
                 tempCloset.GetComponent<ShirtClosetItemManager>().loadModelData(closetItems);
             } else {
                 // not enough products to fill up the whole closet

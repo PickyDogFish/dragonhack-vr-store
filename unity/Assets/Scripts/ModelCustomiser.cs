@@ -18,8 +18,6 @@ public class ModelCustomiser : MonoBehaviour {
 
     void Start() {
         Model modelToLoad = new Model();
-        //modelToLoad.builtinModel = "shirt";
-        //modelToLoad.textureOverride = "shirt_1337.png";
         modelToLoad.CustomModel = "polica.glb";
 
         StartCoroutine(GenerateModel(modelToLoad, (GameObject loaded, Model modelData) => {
@@ -43,6 +41,7 @@ public class ModelCustomiser : MonoBehaviour {
         Task task = importer.Load(MODELS_API_LOCATION + modelData.CustomModel);
         yield return new WaitUntil(() => task.IsCompleted); // Sometimes you just need to make coroutines and await love each other
         importer.InstantiateMainScene(output.transform);
+        output.AddComponent<Item>();
 
         callback(output, modelData);
     }

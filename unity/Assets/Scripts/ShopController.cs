@@ -10,6 +10,7 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private CategorySelector categorySelector;
     private int currentCategory = 0;
+    private bool firstLoad = true;
     void Start()
     {
         StartCoroutine(DataHandler.GetCategories(OnCategoriesReceived));
@@ -30,6 +31,5 @@ public class ShopController : MonoBehaviour
     void OnCategoriesReceived(Category[] categories){
         categoryList.AddRange(categories);
         categorySelector.categoryCount = categoryList.Count;
-        categoryController.loadProducts(categoryList[0]);
     }
 }

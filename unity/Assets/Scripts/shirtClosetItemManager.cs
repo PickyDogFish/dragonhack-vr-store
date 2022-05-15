@@ -22,9 +22,6 @@ public class ShirtClosetItemManager : MonoBehaviour {
             TextMeshProUGUI text = productTextMap[products[i].ModelId];
             text.text = products[i].Price.ToString() + " €";
             StartCoroutine(DataHandler.GetModelData(products[i].ModelId, (Model model) => {
-                // Debug.Log("product");
-                // Debug.Log(model.id);
-                // Debug.Log(model.BuiltinModel);
                 StartCoroutine(modelCustomiser.GenerateModel(model, setModels));
             }));
         }
