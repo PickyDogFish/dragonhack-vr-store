@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetRange: 0.27
   deadzone: 0.05
+  categoryCount: 5
 --- !u!65 &718190319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -444,6 +445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3643168829235756275, guid: 38c7d78441dc9cc4e8200d80c940e279, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2dda07756269d5c41bc81590b4c86f6b, type: 2}
     - target: {fileID: -3590255550747906359, guid: 38c7d78441dc9cc4e8200d80c940e279, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -499,14 +504,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925777636}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.01152, y: -0.02767, z: 0.00741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.292, z: 46.248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 871143967}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 180}
 --- !u!20 &925777639
 Camera:
   m_ObjectHideFlags: 0
