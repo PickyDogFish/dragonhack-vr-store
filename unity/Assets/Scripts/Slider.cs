@@ -40,8 +40,8 @@ public class Slider : Grabable
     void Start()
     {
         slideDirection = slideDirection.normalized;
-        startStopLocation = slideDirection * -5;
-        endStopLocation = slideDirection * 5;
+        startStopLocation = slideDirection * -10;
+        endStopLocation = slideDirection * 10;
     }
 
     // Update is called once per frame

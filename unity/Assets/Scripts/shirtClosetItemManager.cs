@@ -26,7 +26,7 @@ public class shirtClosetItemManager : MonoBehaviour
         mapProductsToEmpties(products);
         for (int i = 0; i < products.Length; i++)
         {
-            StartCoroutine(DataHandler.GetModelData(products[i].id, (Model model) => {
+            StartCoroutine(DataHandler.GetModelData(products[i].ModelId, (Model model) => {
                 StartCoroutine(modelCustomiser.GenerateModel(model, setModels));
             }));
         }
@@ -43,7 +43,7 @@ public class shirtClosetItemManager : MonoBehaviour
     void mapProductsToEmpties(Product[] products){
         for (int i = 0; i < products.Length; i++)
         {
-            productEmptyTransformMap.Add(products[i].id, emptyParent.GetChild(i));
+            productEmptyTransformMap.Add(products[i].ModelId, emptyParent.GetChild(i));
         }
     }
 

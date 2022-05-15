@@ -34,7 +34,7 @@ public class CategoryController : MonoBehaviour
         //make a request to db for objects of a category
         //figure out the amount of objects you have to spawn
         Category category = new Category();
-        category.id = 1;
+        category.id = 2;
         StartCoroutine(DataHandler.GetProducts(category, loadModels));
 
 
@@ -82,6 +82,7 @@ public class CategoryController : MonoBehaviour
 
     void loadModels(Product[] products){
         itemCount = products.Length;
+        Debug.Log(itemCount);
         //figure out the closet type of the category
         string cat = "shirt";
 
@@ -110,11 +111,20 @@ public class CategoryController : MonoBehaviour
         {
             GameObject tempCloset = closetList[i];
             if (products.Length >= i* itemsPerCloset + 6){
+                
+                Debug.Log(itemsPerCloset);
                 Product[] closetItems = new Product[6];
                 Array.Copy(products, i* itemsPerCloset, closetItems, 0, 6);
                 tempCloset.GetComponent<shirtClosetItemManager>().loadModelData(closetItems);
+                Debug.Log("post");
             } else {
-                //not enough products to fill up the whole closet
+                // not enough products to fill up the whole closet
+                // int productsLeft = products.Length - i * itemsPerCloset;
+                // Debug.Log("stuff and things");
+                // Product[] closetItems = new Product[productsLeft];
+                // Array.Copy(products, i* itemsPerCloset, closetItems, 0, productsLeft);
+                // tempCloset.GetComponent<shirtClosetItemManager>().loadModelData(closetItems);
+                // break;
             }
         }
         
