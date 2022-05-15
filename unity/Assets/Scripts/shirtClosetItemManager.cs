@@ -15,18 +15,6 @@ public class shirtClosetItemManager : MonoBehaviour
     [SerializeField]
     private Transform canvas;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void loadModelData(Product[] products){
         mapProductsToEmpties(products);
         for (int i = 0; i < products.Length; i++)
