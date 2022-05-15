@@ -18,8 +18,6 @@ public class ModelCustomiser : MonoBehaviour {
 
     void Start() {
         Model modelToLoad = new Model();
-        //modelToLoad.builtinModel = "shirt";
-        //modelToLoad.textureOverride = "shirt_1337.png";
         modelToLoad.CustomModel = "polica.glb";
 
         StartCoroutine(GenerateModel(modelToLoad, (GameObject loaded, Model modelData) => {
