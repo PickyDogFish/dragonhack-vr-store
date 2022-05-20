@@ -4,8 +4,9 @@
 
 Concept of a working API for a VR store frontend.
 
-Used technologies: 
+Used software: 
 
   - Unity game engine
   - Blender 3D modeling and texturing
+  - Node JS Express 
   - Dbeaver database tool
