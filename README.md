@@ -1,6 +1,6 @@
-#VIRTUAL WEB-STORE#
+#V IRTUAL WEB-STORE #
 
-##Dragonhack 2022 project created in 24 hours##
+## Dragonhack 2022 project created in 24 hours ##
 
 Concept of a working API for a VR store frontend.
 
