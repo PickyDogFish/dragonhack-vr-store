@@ -1,4 +1,4 @@
-#V IRTUAL WEB-STORE #
+# VIRTUAL WEB-STORE #
 
 ## Dragonhack 2022 project created in 24 hours ##
 
