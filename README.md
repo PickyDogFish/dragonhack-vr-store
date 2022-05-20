@@ -6,7 +6,7 @@ Concept of a working API for a VR store frontend.
 
 Used software: 
 
-  - Unity game engine
-  - Blender 3D modeling and texturing
-  - Node JS Express 
-  - Dbeaver database tool
+  - __Unity game engine__ (VR store and scripts in C#)
+  - __Blender__ (3D modeling and texturing)
+  - __Node JS Express__ (JS API coding) 
+  - __Dbeaver database tool__ (Database management)
