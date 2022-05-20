@@ -9,4 +9,4 @@ Used software:
   - __Unity game engine__ (VR store and scripts in C#)
   - __Blender__ (3D modeling and texturing)
   - __Node JS Express__ (JS API coding) 
-  - __Dbeaver database tool__ (Database management)
+  - __Dbeaver database tool__ (MySQL database management)
