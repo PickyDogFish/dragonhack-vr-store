@@ -1,3 +1,11 @@
-# DRAGONHACK 2022 VR store
+# DVIRTUAL WEB-STORE
 
-Hackaton project of a conceptual API managed VR store created in 24h.
+##Dragonhack 2022 project created in 24 hours##
+
+Concept of a working API for a VR store frontend.
+
+Used technologies: 
+
+  - Unity game engine
+  - Blender 3D modeling and texturing
+  - Dbeaver database tool
